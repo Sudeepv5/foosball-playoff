@@ -1,0 +1,98 @@
+.center
+{
+    text-align: center;
+    position: relative;
+	margin: 0 auto;
+    padding: 10px;
+}
+
+.header
+{
+    font-size: 200px;
+    padding-top: 200px;
+    background-image:url(media/main.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:whitesmoke;
+}
+
+.fa-futbol-o
+{
+    font-size: 140px;
+}
+
+body
+{
+    background-color: white;
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #292929;
+}
+
+.row
+{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#register, #schedule
+{
+    padding: 10px;
+    border: 1px solid #eeeeee;
+    border-bottom: 0px;
+    font-size: 28px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+.fields
+{
+    padding : 5% !important;
+}
+#result
+{
+    font-size :20px;
+    padding :10px;
+    margin-left : 10%;
+    margin-right : 10%;
+}
+
+#nav-bar
+{
+  text-align: center;
+  padding:10px !important;
+  border-bottom: 1px solid #eeeeee;
+  background-color:firebrick;
+}
+
+#nav-bar a {
+  color:whitesmoke;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#nav-bar ul
+{
+    margin: auto !important;
+}
+
+#nav-bar li
+{
+    display:inline;
+    padding:70px !important;
+}
+
+
+.active
+{
+    background-color:#fa0;
+    color: white;
+}
+
+#trailer{
+    background-color:  #352719;
+    color: #D2CFCC;
+    font-size: 12px;
+    padding: 20px;
+}
+
