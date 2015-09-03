@@ -36,14 +36,16 @@ function sendPlayer(player){
             $('#register-player').html('Success!');
             $('#register-player').prop('disabled','true');
             $('#result').addClass('alert alert-success');
-            $('#result').html('Now bend your back and start twisting those rods. We will let you know once teams are finalised');
+            $('#result').html('Now bend your back and start twisting those rods. We will let you know once teams are finalised!');
         },
-        error:function(){
+        error:function(data){
+            var error=data.responseJSON.errors.email.message || 'Asshole, You broke it. Refresh the page and try registering again!';
             $('#register-player').removeClass("btn-primary");
-            $('#register-player').addClass("btn-error");
+            $('#register-player').addClass("btn-danger");
             $('#register-player').html('Error!');
+            $('#register-player').prop('disabled','true');
             $('#result').addClass('alert alert-danger');
-            $('#result').html('Asshole, You broke it. Call Sudeep for a quick fix!');
+            $('#result').html(error);
         }
     });
 };

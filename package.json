@@ -26,6 +26,7 @@
     "body-parser": "^1.13.3",
     "express": "~3.4.4",
     "mongoose": "^4.1.5",
+    "mongoose-unique-validator": "^0.4.1",
     "multer": "^1.0.3"
   },
   "devDependencies": {},
