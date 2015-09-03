@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(multer());
 
-mongoose.connect('mongodb://localhost/playoff');
+
+var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/playoff'
+mongoose.connect(connectionString);
 
 var PlayerSchema=new mongoose.Schema({
     name: String,
@@ -19,7 +21,7 @@ var PlayerSchema=new mongoose.Schema({
 
 var PlayerModel=mongoose.model('player', PlayerSchema);
 
-var player1=new PlayerModel({ name : 'Mike', email : 'qwer@gmail.com'});
+var player1=new PlayerModel({ name : 'Mike1', email : 'qwer1@gmail.com'});
 
 player1.save();
 
@@ -28,14 +30,11 @@ app.post('/player',function(req,res){
     res.status(200).send('OK');
 });
 
-app.get('/process',function(req,res){
-    res.json(process.env);
-});
 
 
 
-ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
  
 app.listen(port,ipaddress,function(){
     console.log("Running!")
