@@ -34,12 +34,17 @@ body
     padding-right: 10%;
 }
 
-#register, #schedule
+code
+{
+    font-size: 80%;
+}
+
+#register, #tournament, #schedule
 {
     padding: 10px;
     border: 1px solid #eeeeee;
     border-bottom: 0px;
-    font-size: 28px;
+    font-size: 24px;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -49,12 +54,24 @@ body
 {
     padding : 5% !important;
 }
-#result
+#result 
 {
     font-size :20px;
     padding :10px;
     margin-left : 10%;
     margin-right : 10%;
+}
+
+.players
+{
+    font-size :20px;
+    padding :10px;
+    margin-left : 10%;
+    margin-right : 10%;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-left-color: #aa6708;
+    border-radius: 3px;
 }
 
 #nav-bar

@@ -1,16 +1,27 @@
 $(document).ready(function () {
     
-    $("#schedule").hide(); 
+    $("#tournament").hide(); 
+    $("#schedule").hide();
+    
     $("#reg-nav").click(function (event) {
         $("#register").show();
-        $("#schedule").hide(); 
+        $("#schedule").hide();
+        $("#tournament").hide(); 
         event.preventDefault();
     });
     $("#sch-nav").click(function (event) {
         $("#register").hide();
-        $("#schedule").show(); 
+        $("#schedule").show();
+        $("#tournament").hide(); 
         event.preventDefault();
     });
+    $("#tou-nav").click(function (event) {
+        $("#register").hide();
+        $("#tournament").show(); 
+        $("#schedule").hide();
+        event.preventDefault();
+    });
+    
     
     $('#form-register').submit(function(event) {
         var player={};
@@ -24,19 +35,20 @@ $(document).ready(function () {
 });
 
 function sendPlayer(player){
-    var qUrl='/player';
+    var qUrl='/newplayer';
     $.ajax({
         url: qUrl,
         type:'POST',
         contentType: 'application/json', 
         data:JSON.stringify(player),
-        success:function(){
+        success:function(data){
             $('#register-player').removeClass("btn-primary");
             $('#register-player').addClass("btn-success");
             $('#register-player').html('Success!');
             $('#register-player').prop('disabled','true');
             $('#result').addClass('alert alert-success');
             $('#result').html('Now bend your back and start twisting those rods. We will let you know once teams are finalised!');
+            displayPlayers(data);
         },
         error:function(data){
             var error=data.responseJSON.errors.email.message || 'Asshole, You broke it. Refresh the page and try registering again!';
@@ -48,4 +60,15 @@ function sendPlayer(player){
             $('#result').html(error);
         }
     });
-};
+}
+
+function displayPlayers(players)
+{
+    var listHTML="";
+    var head='<div class="row players">'+players.length+' players have registered so far..<hr>';
+    players.forEach(function(element,index,arr){
+    listHTML+=", "+element.name;
+    });
+    listHTML=head+listHTML.substring(2)+'</div>';
+    $("#players").html(listHTML);
+}

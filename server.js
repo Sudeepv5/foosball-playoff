@@ -5,17 +5,21 @@ var mongoose= require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var app = express();
 
+//Specifying directory
 app.use(express.static(__dirname + '/'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(multer());
 
-
+//Env Switching variables
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var connectionString = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/playoff'
 
 mongoose.connect(connectionString);
 
+//Schema for Player
 var PlayerSchema=new mongoose.Schema({
     name: {type: String, required: true},
     email: {type:String, unique:true, required: true}
@@ -24,8 +28,8 @@ PlayerSchema.plugin(uniqueValidator,{ message: 'You know balls?! Entered email h
 
 var PlayerModel=mongoose.model('player', PlayerSchema);
 
-
-app.post('/player',function(req,res){
+//New Player registration
+app.post('/newplayer',function(req,res){
    
     var player=new PlayerModel({ 
         name : req.body.name, 
@@ -33,21 +37,21 @@ app.post('/player',function(req,res){
     })
     player.save(function(err,doc){
         if(err){
-        res.statusCode=400;
-        res.json(err);
+            res.statusCode=400;
+            res.json(err);
         }
         else 
         {
-            res.status(200).send('OK');
+            res.statusCode=200;
+            PlayerModel.find(function(err,data){
+                if(!err){
+                res.json(data);
+                }
+            });
         }
     });
 });
 
-
-
-
-ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
  
 app.listen(port,ipaddress,function(){
     console.log("Running!")
