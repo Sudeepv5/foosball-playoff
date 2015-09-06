@@ -1,3 +1,5 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+A Website to maintain and support a foosball tournament!
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+Work in progress!
+
+http://foosballplayoff-kineto.rhcloud.com/
